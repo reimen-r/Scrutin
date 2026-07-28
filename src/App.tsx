@@ -45,7 +45,7 @@ function BiometricGate({ children }: { children: React.ReactNode }) {
   const authenticate = async () => {
     try {
       const result = await LocalAuthentication.authenticateAsync({
-        promptMessage: 'Desbloquear ContractAnalyzer',
+        promptMessage: 'Desbloquear Scrutin',
         fallbackLabel: 'Usar contraseña del dispositivo',
         disableDeviceFallback: false,
       });
@@ -64,7 +64,7 @@ function BiometricGate({ children }: { children: React.ReactNode }) {
         <View style={[styles.lockIconCircle, { backgroundColor: material.primaryContainer }]}>
           <Ionicons name="lock-closed" size={48} color={material.onPrimaryContainer} />
         </View>
-        <Text style={[styles.lockTitle, { color: material.onSurface }]}>ContractAnalyzer</Text>
+        <Text style={[styles.lockTitle, { color: material.onSurface }]}>Scrutin</Text>
         <Text style={[styles.lockSubtitle, { color: material.onSurfaceVariant }]}>
           Toque para desbloquear con biometría
         </Text>

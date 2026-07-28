@@ -1,4 +1,4 @@
-# ContractAnalyzer — Expo SDK 54
+# Scrutin — Expo SDK 54
 
 Single Expo app. Entry: `index.ts` → `App.tsx` → `src/App.tsx`.
 

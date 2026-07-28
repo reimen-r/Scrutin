@@ -1,4 +1,4 @@
-const CACHE_NAME = 'contractanalyzer-v1';
+const CACHE_NAME = 'scrutin-v1';
 
 const STATIC_ASSETS = [
   '/',

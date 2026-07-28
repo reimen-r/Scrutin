@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Contract Analyzer",
-    "slug": "ContractAnalyzer",
+    "slug": "scrutin",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -42,7 +42,7 @@
     ],
     "web": {
       "favicon": "./assets/favicon.png",
-      "title": "Contract Analyzer",
+      "title": "Scrutin",
       "description": "Analiza contratos venezolanos con IA",
       "themeColor": "#e6f4fe",
       "backgroundColor": "#ffffff",
@@ -53,8 +53,8 @@
       "orientation": "portrait",
       "barStyle": "default",
       "manifest": {
-        "name": "Contract Analyzer",
-        "short_name": "ContractAnalyzer",
+    "name": "Scrutin",
+        "short_name": "Scrutin",
         "description": "Analiza contratos venezolanos con IA",
         "start_url": "/",
         "scope": "/",

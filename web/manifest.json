@@ -1,6 +1,6 @@
 {
-  "name": "Contract Analyzer",
-  "short_name": "ContractAnalyzer",
+  "name": "Scrutin",
+  "short_name": "Scrutin",
   "description": "Analiza contratos venezolanos con IA",
   "start_url": "/",
   "scope": "/",

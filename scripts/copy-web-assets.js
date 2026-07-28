@@ -8,7 +8,7 @@ const indexHtmlPath = path.join(distDir, 'index.html');
 const pwaHead = `
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="ContractAnalyzer">
+<meta name="apple-mobile-web-app-title" content="Scrutin">
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/assets/icon-192x192.png">
 `;
