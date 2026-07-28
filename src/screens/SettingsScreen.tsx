@@ -187,7 +187,7 @@ export default function SettingsScreen() {
                 <Ionicons name="hammer" size={20} color={material.primary} />
               </View>
               <View>
-                <Text style={[styles.settingTitle, { color: material.onSurface }]}>Lexis Architect Engine</Text>
+                <Text style={[styles.settingTitle, { color: material.onSurface }]}>Scrutin Engine</Text>
                 <Text style={[styles.settingDesc, { color: material.onSurfaceVariant }]}>
                   Gemini AI v4.2 con soporte legal venezolano
                 </Text>

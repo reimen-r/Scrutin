@@ -321,7 +321,7 @@ export default function ResultScreen({ navigation, route }: Props) {
             <Ionicons name="download" size={20} color={material.onPrimary} />
             <Text style={[styles.exportBtnText, { color: material.onPrimary }]}>Exportar Resumen (PDF)</Text>
           </TouchableOpacity>
-          <Text style={[styles.engineText, { color: material.onSurfaceVariant }]}>Generado por Lexis Engine v4.2</Text>
+          <Text style={[styles.engineText, { color: material.onSurfaceVariant }]}>Generado por Scrutin Engine</Text>
         </View>
       )}
 
