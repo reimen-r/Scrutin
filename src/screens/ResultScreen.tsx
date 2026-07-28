@@ -11,9 +11,17 @@ import { spacing, fontSize, fontWeight, borderRadius, shadow, letterSpacing, lin
 import RiskLabel from '../components/RiskLabel';
 import { getContractLabel } from '../types/contract';
 
+function sanitize(text: string): string {
+  return text
+    .replace(/<[^>]*>/g, '')
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
+    .trim();
+}
+
 function MarkdownText({ text, color }: { text: string; color: string }) {
+  const safeText = sanitize(text);
   const segments: React.ReactNode[] = [];
-  const paragraphs = text.split('\n\n').filter(Boolean);
+  const paragraphs = safeText.split('\n\n').filter(Boolean);
 
   let key = 0;
   for (const para of paragraphs) {

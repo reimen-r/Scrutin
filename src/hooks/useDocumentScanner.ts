@@ -3,7 +3,7 @@ import { Alert, Animated, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
-import { shouldCompress, estimateSize } from '../utils/imageCompression';
+import { validateFile } from '../utils/imageCompression';
 
 interface ProcessParams {
   base64: string;
@@ -11,6 +11,14 @@ interface ProcessParams {
 }
 
 type ProcessDocument = (params: ProcessParams) => Promise<void>;
+
+const ALLOWED_MIME_TYPES = new Set([
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+  'application/pdf',
+]);
 
 function useCameraUnavailable() {
   const [permission] = useState<any>(null);
@@ -51,12 +59,10 @@ export function useDocumentScanner(processDocument: ProcessDocument) {
   };
 
   const runProcess = async (base64: string, mimeType: string) => {
-    if (shouldCompress(base64)) {
-      Alert.alert(
-        'Imagen grande',
-        `El archivo (${estimateSize(base64)}) supera el tamaño recomendado de 10MB. ` +
-        'Puede experimentar tiempos de carga más largos. Considere usar una imagen con menor resolución.'
-      );
+    const validation = validateFile(base64, mimeType);
+    if (!validation.valid) {
+      Alert.alert('Archivo no válido', validation.error);
+      return;
     }
     setLoading(true);
     try {
@@ -71,7 +77,6 @@ export function useDocumentScanner(processDocument: ProcessDocument) {
 
   const takePicture = async () => {
     if (isWeb) return;
-    const { CameraView: CV } = require('expo-camera');
     if (!permission?.granted) {
       const result = await requestPermission();
       if (!result.granted) {
@@ -82,7 +87,12 @@ export function useDocumentScanner(processDocument: ProcessDocument) {
     try {
       const photo = await cameraRef.current?.takePictureAsync({ base64: true, quality: 0.8 });
       if (photo?.base64) {
-        await runProcess(photo.base64, 'image/jpeg');
+        const mimeType = photo.mimeType || 'image/jpeg';
+        if (!ALLOWED_MIME_TYPES.has(mimeType)) {
+          Alert.alert('Formato no soportado', 'Solo se permiten imágenes JPEG, PNG y documentos PDF.');
+          return;
+        }
+        await runProcess(photo.base64, mimeType);
       }
     } catch {
       Alert.alert('Error', 'No se pudo tomar la foto.');
@@ -99,13 +109,18 @@ export function useDocumentScanner(processDocument: ProcessDocument) {
       const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], quality: 0.8, base64: true });
       if (result.canceled) return;
       const asset = result.assets[0];
+      const mimeType = asset.mimeType || 'image/jpeg';
+      if (!ALLOWED_MIME_TYPES.has(mimeType)) {
+        Alert.alert('Formato no soportado', 'Solo se permiten imágenes JPEG, PNG y documentos PDF.');
+        return;
+      }
       if (asset.base64) {
-        await runProcess(asset.base64, asset.mimeType || 'image/jpeg');
+        await runProcess(asset.base64, mimeType);
       } else if (asset.uri) {
         setLoading(true);
         setLoadingMessage('Procesando imagen...');
         const base64 = await FileSystem.readAsStringAsync(asset.uri, { encoding: 'base64' });
-        await runProcess(base64, asset.mimeType || 'image/jpeg');
+        await runProcess(base64, mimeType);
       }
     } catch {
       Alert.alert('Error', 'Error al seleccionar imagen.');
@@ -118,6 +133,10 @@ export function useDocumentScanner(processDocument: ProcessDocument) {
       const result = await DocumentPicker.getDocumentAsync({ type: 'application/pdf', copyToCacheDirectory: true });
       if (result.canceled || !result.assets?.[0]?.uri) return;
       const file = result.assets[0];
+      if (!ALLOWED_MIME_TYPES.has(file.mimeType || 'application/pdf')) {
+        Alert.alert('Formato no soportado', 'Solo se permiten documentos PDF.');
+        return;
+      }
       setLoading(true);
       setLoadingMessage('Leyendo PDF...');
       const base64 = await FileSystem.readAsStringAsync(file.uri, { encoding: 'base64' });
