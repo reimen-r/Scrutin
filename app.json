@@ -1,0 +1,74 @@
+{
+  "expo": {
+    "name": "Contract Analyzer",
+    "slug": "ContractAnalyzer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Necesitamos acceso a la cámara para escanear contratos.",
+        "NSPhotoLibraryUsageDescription": "Necesitamos acceso a la galería para seleccionar contratos."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Necesitamos acceso a la cámara para escanear contratos."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Necesitamos acceso a la galería para seleccionar contratos."
+        }
+      ]
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "title": "Contract Analyzer",
+      "description": "Analiza contratos venezolanos con IA",
+      "themeColor": "#e6f4fe",
+      "backgroundColor": "#ffffff",
+      "lang": "es",
+      "scope": "/",
+      "startUrl": "/",
+      "display": "standalone",
+      "orientation": "portrait",
+      "barStyle": "default",
+      "manifest": {
+        "name": "Contract Analyzer",
+        "short_name": "ContractAnalyzer",
+        "description": "Analiza contratos venezolanos con IA",
+        "start_url": "/",
+        "scope": "/",
+        "display": "standalone",
+        "orientation": "portrait",
+        "theme_color": "#e6f4fe",
+        "background_color": "#ffffff",
+        "lang": "es",
+        "categories": ["productivity", "utilities"]
+      },
+      "splash": {
+        "backgroundColor": "#e6f4fe",
+        "resizeMode": "contain"
+      }
+    }
+  }
+}
