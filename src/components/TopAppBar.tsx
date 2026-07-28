@@ -24,7 +24,7 @@ export default function TopAppBar({ title, showBack, onBack, rightAction }: Prop
         ) : (
           <View style={styles.logoContainer}>
             <Ionicons name="hammer" size={20} color={material.primary} />
-            <Text style={[styles.logoText, { color: material.primary }]}>LEXIS ARCHITECT</Text>
+            <Text style={[styles.logoText, { color: material.primary }]}>SCRUTIN</Text>
           </View>
         )}
 
