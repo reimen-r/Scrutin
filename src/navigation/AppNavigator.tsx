@@ -13,7 +13,6 @@ import TSJHistoryScreen from '../screens/TSJHistoryScreen';
 import FilesScreen from '../screens/FilesScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ScanPickerScreen from '../screens/ScanPickerScreen';
-import DrivePickerScreen from '../screens/DrivePickerScreen';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { ContractType, AnalysisResult, TSJExtractionResult } from '../types/contract';
 
@@ -45,7 +44,6 @@ export type RootStackParamList = {
   TSJScanner: undefined;
   TSJResult: { result: TSJExtractionResult };
   TSJHistory: undefined;
-  DrivePicker: undefined;
 };
 
 export type TabStackParamList = {
@@ -186,7 +184,6 @@ export default function AppNavigator() {
           <Stack.Screen name="TSJScanner" component={TSJScannerScreen} />
           <Stack.Screen name="TSJResult" component={TSJResultScreenWrapper} />
           <Stack.Screen name="TSJHistory" component={TSJHistoryScreen} />
-          <Stack.Screen name="DrivePicker" component={DrivePickerScreen} />
         </Stack.Navigator>
       </Suspense>
     </NavigationContainer>

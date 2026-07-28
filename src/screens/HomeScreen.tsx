@@ -83,17 +83,6 @@ export default function HomeScreen() {
             </AnimatedPressable>
 
             <AnimatedPressable
-              onPress={() => navigation.navigate('DrivePicker')}
-              style={[styles.quickAccessCard, { backgroundColor: material.surfaceContainerLowest, borderColor: material.outlineVariant }]}
-            >
-              <View style={[styles.quickAccessIcon, { backgroundColor: material.surfaceContainer }]}>
-                <Ionicons name="logo-google" size={24} color="#4285F4" />
-              </View>
-              <Text style={[styles.quickAccessTitle, { color: material.primary }]}>Google Drive</Text>
-              <Text style={[styles.quickAccessDesc, { color: material.onSurfaceVariant }]}>Sincronización de nube</Text>
-            </AnimatedPressable>
-
-            <AnimatedPressable
               onPress={() => setShowContractPicker(true)}
               style={[styles.quickAccessCard, { backgroundColor: material.surfaceContainerLowest, borderColor: material.outlineVariant }]}
             >
